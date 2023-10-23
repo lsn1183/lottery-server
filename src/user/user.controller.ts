@@ -15,5 +15,4 @@ export class UserController {
   login(): Promise<UserEntity[]> {
     return this.userService.login();
   }
-
 }

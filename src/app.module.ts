@@ -6,6 +6,7 @@ import { AppService } from './app.service';
 // import { env } from './common/config';
 // 子模块加载
 import { AnimalModule } from './animal/animal.module';
+import { OpenModule } from './open/open.module';
 import { UserModule } from './user/user.module';
 /**
  * @Module() 定义一个模块，并管理这个模块的导入集合、控制器集合、提供者集合、导出集合
@@ -30,6 +31,7 @@ import { UserModule } from './user/user.module';
     }),
     UserModule,
     AnimalModule,
+    OpenModule,
   ], // 导入其他模块的集合
   controllers: [AppController], // 当前模块的控制器集合
   providers: [AppService], // 当前模块的提供者集合

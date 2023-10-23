@@ -63,7 +63,5 @@ tslint.json         // ts 语法检查配置文件
 
 ## 数据库
 # 新建 user 模块，我们都放在 logical 下
-nest g mo user logical
-nest g s user logical --no-spec
-nest g co user logical --no-spec
+nest g mo user logical && nest g s user logical --no-spec && nest g co user logical --no-spec
 
