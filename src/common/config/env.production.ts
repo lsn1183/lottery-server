@@ -2,7 +2,7 @@ export default {
   // 服务基本配置
   SERVICE_CONFIG: {
     // 端口
-    port: 3000,
+    port: 3001
   },
 
   // 数据库配置
@@ -12,8 +12,9 @@ export default {
     port: 3306,
     username: 'root',
     password: '12345678',
-    database: 'nestjs_prod',
+    database: 'database',
+    entities: ['dist/**/*.entity{.ts,.js}'],
     autoLoadEntities: true,
-    synchronize: true,
-  },
-};
+    synchronize: true
+  }
+}

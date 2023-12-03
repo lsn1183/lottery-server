@@ -1,46 +1,29 @@
-import { Controller, Get, HttpCode, Post, Put, Request } from '@nestjs/common';
-import { OpenEntity } from './open.entity';
-import { OpenService } from './open.service';
-
-interface OpenDto {
-  periods: string;
-  particular: string;
-  ordinary1: string;
-  ordinary2: string;
-  ordinary3: string;
-  ordinary4: string;
-  ordinary5: string;
-  ordinary6: string;
-}
+import { Body, Controller, Delete, Get, Param, Post, Put, Query } from '@nestjs/common'
+import { QueryOpenDto } from './dto/queryOpen.dto'
+import { OpenEntity } from './open.entity'
+import { OpenService } from './open.service'
 
 @Controller('open')
 export class OpenController {
   constructor(private readonly entityService: OpenService) {}
 
-  @Get('list')
-  @HttpCode(200)
-  findAll(): Promise<OpenEntity[]> {
-    return this.entityService.findAll();
+  @Get('page')
+  page(@Query() query: QueryOpenDto): Promise<OpenEntity[]> {
+    return this.entityService.pageQuery(query)
   }
 
-  @Get('id')
-  @HttpCode(200)
-  getId(): Promise<any> {
-    return this.entityService.test();
+  @Post('create')
+  create(@Body() body): Promise<any> {
+    return this.entityService.create(body)
   }
 
-  @Post('create/lottery')
-  create(@Request() req): Promise<any> {
-    return this.entityService.create(req.body);
+  @Put('update')
+  update(@Body() body): Promise<any> {
+    return this.entityService.create(body)
   }
 
-  @Put('update/lottery')
-  update(@Request() req): any {
-    return this.entityService.create(req.body);
+  @Delete(':id')
+  remove(@Param('id') id: any) {
+    return `This action removes a #${id} cat`
   }
-
-  // @Delete(':id')
-  // remove(@Param('id') id) {
-  //   return `This action removes a #${id} cat`;
-  // }
 }

@@ -1,13 +1,23 @@
 // 程序入口文件
-import { NestFactory } from '@nestjs/core';
-import { AppModule } from './app.module';
-import { HttpExceptionFilter } from './filters/http-exception/http-exception.filter';
-import { TransformInterceptor } from './filters/transform.interceptor';
+import { NestFactory } from '@nestjs/core'
+import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger'
+import { AppModule } from './app.module'
+import { env } from './common/config'
+import { HttpExceptionFilter } from './filters/http-exception/http-exception.filter'
+import { TransformInterceptor } from './filters/transform.interceptor'
 
 async function bootstrap() {
-  const app = await NestFactory.create(AppModule);
-  app.useGlobalFilters(new HttpExceptionFilter()); // TODO: 过滤器
-  app.useGlobalInterceptors(new TransformInterceptor()); // TODO: 统一请求成功的返回数据
-  await app.listen(3001);
+  const app = await NestFactory.create(AppModule)
+  app.useGlobalFilters(new HttpExceptionFilter()) // TODO: 过滤器
+  app.useGlobalInterceptors(new TransformInterceptor()) // TODO: 统一请求成功的返回数据
+  const config = new DocumentBuilder() // TODO: set config
+    .setTitle('Cats example')
+    .setDescription('The cats API description')
+    .setVersion('1.0')
+    .addTag('cats')
+    .build()
+  const document = SwaggerModule.createDocument(app, config) // TODO: swagger
+  SwaggerModule.setup('api', app, document)
+  await app.listen(env.SERVICE_CONFIG, '0.0.0.0')
 }
-bootstrap();
+bootstrap()

@@ -1,10 +1,10 @@
-import development from './env.development';
-import production from './env.production';
+import development from './env.development'
+import production from './env.production'
 
 const configs = {
   development,
-  production,
-};
+  production
+}
 
-const env = configs[process.env.NODE_ENV || 'development'];
-export { env };
+const env = configs[process.env.NODE_ENV || 'development']
+export { env }

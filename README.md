@@ -63,5 +63,40 @@ tslint.json         // ts 语法检查配置文件
 
 ## 数据库
 # 新建 user 模块，我们都放在 logical 下
-nest g mo user logical && nest g s user logical --no-spec && nest g co user logical --no-spec
+nest g mo recommend && nest g s recommend --no-spec && nest g co recommend --no-spec && nest g dt recommend --no-spec
 
+# 校验库使用例子
+import {
+  validate,
+  validateOrReject,
+  Contains,
+  IsInt,
+  Length,
+  IsEmail,
+  IsFQDN,
+  IsDate,
+  Min,
+  Max,
+} from "class-validator";
+
+export class Post {
+  @Length(10, 20)
+  title: string;
+
+  @Contains("hello")
+  text: string;
+
+  @IsInt()
+  @Min(0)
+  @Max(10)
+  rating: number;
+
+  @IsEmail()
+  email: string;
+
+  @IsFQDN()
+  site: string;
+
+  @IsDate()
+  createDate: Date;
+}

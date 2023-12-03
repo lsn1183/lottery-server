@@ -1,6 +1,5 @@
 // 程序业务逻辑
-import { Injectable } from '@nestjs/common';
-
+import { Injectable } from '@nestjs/common'
 /**
  * 被 @Injectable() 修饰的类，可以通过其构造函数完成依赖注入，但依赖注入的类必须与当前类属于同一个模块
  */
@@ -8,6 +7,6 @@ import { Injectable } from '@nestjs/common';
 @Injectable()
 export class AppService {
   getHello(): string {
-    return 'Hello World! fancy!';
+    return 'Hello World! fancy!'
   }
 }
