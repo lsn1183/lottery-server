@@ -1,15 +1,11 @@
 import { ApiProperty } from '@nestjs/swagger'
+// 校验器
 import { IsInt, IsNotEmpty } from 'class-validator'
 
-export class UpdateOpenDto {
+export class CreateOpenDto {
   @ApiProperty()
-  @IsInt({ message: 'id应为数字' })
-  @IsNotEmpty({ message: 'id不为空' })
-  readonly id: number
-
-  @ApiProperty()
-  @IsInt({ message: '期数应为数字' })
-  @IsNotEmpty({ message: '期数不为空' }) // 期数
+  @IsInt({ message: '开奖期数应为数字' })
+  @IsNotEmpty({ message: '开奖期数不为空' }) // 期数
   periods: number
 
   @ApiProperty() // 特马

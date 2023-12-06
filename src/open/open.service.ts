@@ -1,7 +1,9 @@
 import { Injectable, Logger } from '@nestjs/common'
 import { InjectRepository } from '@nestjs/typeorm'
 import { Repository } from 'typeorm'
-import { OpenEntity } from './open.entity'
+import { CreateOpenDto } from './dto/create-open.dto'
+import { UpdateOpenDto } from './dto/update-open.dto'
+import { OpenEntity } from './entities/open.entity'
 
 @Injectable()
 export class OpenService {
@@ -10,29 +12,12 @@ export class OpenService {
     private readonly openRepository: Repository<OpenEntity> // TODO: Repository方法操作数据
   ) {}
 
-  // private readonly OpenList: OpenEntity[] = []
-
   async findAll(): Promise<OpenEntity[]> {
-    return await this.openRepository.query('select * from open') // TODO: 原生查询语句
+    return await this.openRepository.query('select * from open ORDER BY periods desc') // TODO: 原生查询语句
   }
-
-  async findOne(ids: string) {
+  async findOne(id: string) {
     // 使用封装好方法：
-    return await this.openRepository.find({ where: { id: ids } })
-  }
-
-  async create(params: OpenEntity) {
-    // 使用封装好方法：
-    return await this.openRepository.insert(params)
-  }
-
-  async update(params: OpenEntity) {
-    // 使用封装好方法：
-    const { periods } = params
-    const data = await this.openRepository.find({
-      where: { periods: periods }
-    })
-    return await this.openRepository.save({ ...data, periods, ...params })
+    return await this.openRepository.find({ where: { id } })
   }
 
   // 分页查询
@@ -71,5 +56,35 @@ export class OpenService {
     result.totalPage = Math.ceil((await this.openRepository.count()) / parameter.pageSize)
 
     return result
+  }
+
+  async create(createOpenDto: CreateOpenDto): Promise<boolean> {
+    try {
+      await this.openRepository.save(createOpenDto)
+      return true
+    } catch (error) {
+      return false
+    }
+  }
+
+  async update(id: string, updateOpenDto: UpdateOpenDto): Promise<boolean> {
+    try {
+      const openToUpdate = await this.openRepository.findOne({
+        where: { id }
+      })
+      await this.openRepository.save({ ...openToUpdate, ...updateOpenDto })
+      return true
+    } catch (error) {
+      return false
+    }
+  }
+
+  async remove(id: number): Promise<boolean> {
+    try {
+      await this.openRepository.delete(id)
+      return true
+    } catch (error) {
+      return false
+    }
   }
 }

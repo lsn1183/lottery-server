@@ -1,33 +1,33 @@
-import { Injectable, Logger } from '@nestjs/common'
-import { InjectRepository } from '@nestjs/typeorm'
-import { Repository } from 'typeorm'
-import { CreateRecommendDto } from './dto/create-recommend.dto'
-import { UpdateRecommendDto } from './dto/update-recommend.dto'
-import { RecommendEntity } from './entities/recommend.entity'
+import { Injectable, Logger } from '@nestjs/common';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
+import { CreateZodiacDto } from './dto/create-zodiac.dto';
+import { UpdateZodiacDto } from './dto/update-zodiac.dto';
+import { ZodiacEntity } from './entities/zodiac.entity';
 
 @Injectable()
-export class RecommendService {
+export class ZodiacService {
   constructor(
-    @InjectRepository(RecommendEntity) // 注入实体
-    private readonly recommendRepository: Repository<RecommendEntity> // TODO: Repository方法操作数据
+    @InjectRepository(ZodiacEntity) // 注入实体
+    private readonly zodiacRepository: Repository<ZodiacEntity> // TODO: Repository方法操作数据
   ) {}
 
-  async findAll(): Promise<RecommendEntity[]> {
+  async findAll(): Promise<ZodiacEntity[]> {
     //  SELECT * FROM products ORDER BY product_name ASC; 顺序查； desc 倒序查
-    return await this.recommendRepository.query('select * from recommend ORDER BY periods desc')
+    return await this.zodiacRepository.query('select * from zodiac ORDER BY periods desc')
   }
 
   async findOne(id: string) {
-    return await this.recommendRepository.findOne({
+    return await this.zodiacRepository.findOne({
       where: { id }
     })
   }
 
   //增加
-  async create(parameter: CreateRecommendDto): Promise<boolean> {
+  async create(parameter: CreateZodiacDto): Promise<boolean> {
     Logger.log(`请求参数：${JSON.stringify(parameter)}`)
     try {
-      await this.recommendRepository.save(parameter)
+      await this.zodiacRepository.save(parameter)
       return true
     } catch (error) {
       Logger.log(`请求失败：${JSON.stringify(error)}`)
@@ -36,11 +36,11 @@ export class RecommendService {
   }
 
   // 更新
-  async update(id: string, parameter: UpdateRecommendDto): Promise<boolean> {
+  async update(id: string, parameter: UpdateZodiacDto): Promise<boolean> {
     Logger.log(`请求参数：${JSON.stringify(parameter)}`)
     try {
-      const recommendToUpdate = await this.recommendRepository.findOne({ where: { id } })
-      await this.recommendRepository.save({ ...recommendToUpdate, ...parameter })
+      const recommendToUpdate = await this.zodiacRepository.findOne({ where: { id } })
+      await this.zodiacRepository.save({ ...recommendToUpdate, ...parameter })
       return true
     } catch (error) {
       Logger.log(`请求失败：${JSON.stringify(error)}`)
@@ -52,7 +52,7 @@ export class RecommendService {
   async remove(id: number): Promise<boolean> {
     Logger.log(`请求参数：${JSON.stringify(id)}`)
     try {
-      const result = await this.recommendRepository.delete(id)
+      const result = await this.zodiacRepository.delete(id)
       Logger.log(`删除返回数据：${JSON.stringify(result)}`)
       if (result.affected == 0) {
         return false
@@ -82,7 +82,7 @@ export class RecommendService {
     if (parameter.id != undefined) {
       SQLwhere.id = parameter.id
     }
-    result.list = await this.recommendRepository.find({
+    result.list = await this.zodiacRepository.find({
       where: SQLwhere,
       order: {
         periods: 'DESC'
@@ -92,9 +92,9 @@ export class RecommendService {
       cache: true
     })
     // 总条数
-    result.totalRows = await this.recommendRepository.count()
+    result.totalRows = await this.zodiacRepository.count()
     // 总页数
-    result.totalPage = Math.ceil((await this.recommendRepository.count()) / parameter.pageSize)
+    result.totalPage = Math.ceil((await this.zodiacRepository.count()) / parameter.pageSize)
 
     return result
   }

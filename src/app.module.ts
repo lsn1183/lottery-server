@@ -9,6 +9,7 @@ import { AnimalModule } from './animal/animal.module'
 import { OpenModule } from './open/open.module'
 import { RecommendModule } from './recommend/recommend.module'
 import { UserModule } from './user/user.module'
+import { ZodiacModule } from './zodiac/zodiac.module'
 
 // console.log('env', env)
 
@@ -23,7 +24,8 @@ import { UserModule } from './user/user.module'
     UserModule,
     AnimalModule,
     OpenModule,
-    RecommendModule
+    RecommendModule,
+    ZodiacModule
   ], // 导入其他模块的集合
   controllers: [AppController], // 当前模块的控制器集合
   providers: [AppService], // 当前模块的提供者集合

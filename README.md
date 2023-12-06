@@ -63,7 +63,8 @@ tslint.json         // ts 语法检查配置文件
 
 ## 数据库
 # 新建 user 模块，我们都放在 logical 下
-nest g mo recommend && nest g s recommend --no-spec && nest g co recommend --no-spec && nest g dt recommend --no-spec
+nest g mo zodiac && nest g s zodiac --no-spec && nest g co zodiac --no-spec
+# nest g resource animal --no-spec
 
 # 校验库使用例子
 import {

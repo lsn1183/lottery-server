@@ -1,49 +1,58 @@
-import { Body, Controller, Get, Logger, Post, Query } from '@nestjs/common'
-import { AddUserDto } from './dto/addUser.dto'
-import { DeleteUserDto } from './dto/deleteUser.dto'
-import { QueryUserDto } from './dto/queryUser.dto'
-import { UpdateUserDto } from './dto/updateUser.dto'
-import { UserEntity } from './user.entity'
+import { Body, Controller, Delete, Get, Logger, Param, Patch, Post, Query } from '@nestjs/common'
+import { CreateUserDto } from './dto/create-user.dto'
+import { QueryUserDto } from './dto/query-user.dto'
+import { UpdateUserDto } from './dto/update-user.dto'
+import { UserEntity } from './entities/user.entity'
 import { UserService } from './user.service'
 
 @Controller('user')
 export class UserController {
   constructor(private readonly userService: UserService) {}
 
-  @Get('list')
-  findAll(@Body() queryUserDto: QueryUserDto): Promise<UserEntity[]> {
-    return this.userService.findAll(queryUserDto)
+  @Post()
+  create(@Body() createUserDto: CreateUserDto) {
+    return this.userService.create(createUserDto)
   }
 
-  @Get('query')
-  getUserInfo(@Query() user: QueryUserDto): Promise<UserEntity[]> {
-    console.log(user.name)
-    return this.userService.pageQuery(user)
+  @Get('list')
+  findAll(): Promise<UserEntity[]> {
+    return this.userService.findAll()
   }
+
+  @Get(':id')
+  findOne(@Param('id') id: string) {
+    return this.userService.findOne(+id)
+  }
+
   /**
    * 用户管理-增加用户
    */
   @Post('/add')
-  addUser(@Body() addUserDto: AddUserDto): Promise<boolean> {
-    Logger.log(`增加用户接收参数：${JSON.stringify(addUserDto)}`)
-    return this.userService.save(addUserDto)
+  addUser(@Body() createUserDto: CreateUserDto) {
+    Logger.log(`增加用户接收参数：${JSON.stringify(createUserDto)}`)
+    return this.userService.create(createUserDto)
   }
-
   /**
    * 用户管理-编辑用户
    */
-  @Post('/edit')
-  updateUser(@Body() updateUserDto: UpdateUserDto): Promise<boolean> {
+  @Patch(':id') // patch 局部更新，带宽更优秀
+  update(@Param('id') id: string, @Body() updateUserDto: UpdateUserDto) {
     Logger.log(`编辑用户接收参数：${JSON.stringify(updateUserDto)}`)
-    return this.userService.save(updateUserDto)
+    return this.userService.update(+id, updateUserDto)
   }
 
   /**
    * 用户管理-删除用户
    */
-  @Post('/delete')
-  deleteUser(@Body() deleteUserDto: DeleteUserDto): Promise<boolean> {
-    Logger.log(`删除用户接收参数：${JSON.stringify(deleteUserDto)}`)
-    return this.userService.delete(deleteUserDto)
+  @Delete(':id')
+  remove(@Param('id') id: string) {
+    Logger.log(`删除用户接收参数：${JSON.stringify(id)}`)
+    return this.userService.remove(+id)
+  }
+
+  @Get('query')
+  getUserInfo(@Query() user: QueryUserDto) {
+    console.log(user.name)
+    return this.userService.pageQuery(user)
   }
 }

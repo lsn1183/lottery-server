@@ -1,29 +1,41 @@
-import { Body, Controller, Delete, Get, Param, Post, Put, Query } from '@nestjs/common'
-import { QueryOpenDto } from './dto/queryOpen.dto'
-import { OpenEntity } from './open.entity'
+import { Body, Controller, Delete, Get, Param, Patch, Post, Query } from '@nestjs/common'
+import { CreateOpenDto } from './dto/create-open.dto'
+import { QueryOpenDto } from './dto/query-open.dto'
+import { UpdateOpenDto } from './dto/update-open.dto'
+import { OpenEntity } from './entities/open.entity'
 import { OpenService } from './open.service'
 
 @Controller('open')
 export class OpenController {
-  constructor(private readonly entityService: OpenService) {}
+  constructor(private readonly openService: OpenService) {}
+
+  @Get()
+  findAll(): Promise<OpenEntity[]> {
+    return this.openService.findAll()
+  }
 
   @Get('page')
-  page(@Query() query: QueryOpenDto): Promise<OpenEntity[]> {
-    return this.entityService.pageQuery(query)
+  pageQuery(@Query() query: QueryOpenDto): Promise<OpenEntity[]> {
+    return this.openService.pageQuery(query)
   }
 
-  @Post('create')
-  create(@Body() body): Promise<any> {
-    return this.entityService.create(body)
+  @Get(':id')
+  findOne(@Param('id') id: string) {
+    return this.openService.findOne(id)
   }
 
-  @Put('update')
-  update(@Body() body): Promise<any> {
-    return this.entityService.create(body)
+  @Post()
+  create(@Body() createOpenDto: CreateOpenDto) {
+    return this.openService.create(createOpenDto)
+  }
+
+  @Patch(':id')
+  update(@Param('id') id: string, @Body() updateOpenDto: UpdateOpenDto) {
+    return this.openService.update(id, updateOpenDto)
   }
 
   @Delete(':id')
-  remove(@Param('id') id: any) {
-    return `This action removes a #${id} cat`
+  remove(@Param('id') id: string) {
+    return this.openService.remove(+id)
   }
 }

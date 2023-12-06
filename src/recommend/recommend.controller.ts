@@ -1,35 +1,43 @@
-import { Body, Controller, Delete, Get, Logger, Post, Query } from '@nestjs/common'
-import { AddRecommendDto } from './dto/addRecommend.dto'
-import { DeleteRecommendDto } from './dto/deleteRecommend.dto'
-import { QueryRecommendDto } from './dto/queryRecommend.dto'
-import { UpdateRecommendDto } from './dto/updateRecommend.dto'
-import { RecommendEntity } from './recommend.entity'
+import { Body, Controller, Delete, Get, Param, Patch, Post, Query } from '@nestjs/common'
+import { CreateRecommendDto } from './dto/create-recommend.dto'
+import { QueryRecommendDto } from './dto/query-recommend.dto'
+import { UpdateRecommendDto } from './dto/update-recommend.dto'
 import { RecommendService } from './recommend.service'
 
 @Controller('recommend')
 export class RecommendController {
-  constructor(private readonly recommendService: RecommendService) {}
+  constructor(private readonly recommendService: RecommendService) { }
 
+  // 分页查询
   @Get('page')
-  query(@Query() queryDto: QueryRecommendDto): Promise<RecommendEntity[]> {
-    return this.recommendService.pageQuery(queryDto)
+  page(@Query() params: QueryRecommendDto) {
+    return this.recommendService.pageQuery(params)
+  }
+  // 查询全部
+  @Get()
+  findAll() {
+    return this.recommendService.findAll()
+  }
+  // ID 查询单个
+  @Get(':id')
+  findOne(@Param('id') id: string) {
+    return this.recommendService.findOne(id)
   }
 
+  // 增加
   @Post('/add')
-  addUser(@Body() addDto: AddRecommendDto): Promise<boolean> {
-    Logger.log(`增加用户接收参数：${JSON.stringify(addDto)}`)
-    return this.recommendService.save(addDto)
+  create(@Body() createRecommendDto: CreateRecommendDto) {
+    return this.recommendService.create(createRecommendDto)
+  }
+  // 更新
+  @Patch(':id')
+  update(@Param('id') id: string, @Body() updateRecommendDto: UpdateRecommendDto) {
+    return this.recommendService.update(id, updateRecommendDto)
   }
 
-  @Post('/edit')
-  updateUser(@Body() updateDto: UpdateRecommendDto): Promise<boolean> {
-    Logger.log(`编辑用户接收参数：${JSON.stringify(updateDto)}`)
-    return this.recommendService.save(updateDto)
-  }
-
-  @Delete('/delete')
-  deleteUser(@Body() deleteDto: DeleteRecommendDto): Promise<boolean> {
-    Logger.log(`删除用户接收参数：${JSON.stringify(deleteDto)}`)
-    return this.recommendService.delete(deleteDto)
+  // 删除
+  @Delete(':id')
+  remove(@Param('id') id: string) {
+    return this.recommendService.remove(+id)
   }
 }

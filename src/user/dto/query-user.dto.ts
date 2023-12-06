@@ -1,7 +1,9 @@
-import { ApiProperty } from '@nestjs/swagger'
+// 用户校验器
+import { ApiProperty, PartialType } from '@nestjs/swagger'
 import { IsInt, IsNotEmpty, Min } from 'class-validator'
+import { CreateUserDto } from './create-user.dto'
 
-export class QueryUserDto {
+export class QueryUserDto extends PartialType(CreateUserDto) {
   @ApiProperty()
   readonly name: string
 

@@ -1,12 +1,12 @@
 import { Module } from '@nestjs/common'
 import { TypeOrmModule } from '@nestjs/typeorm'
+import { OpenEntity } from './entities/open.entity'
 import { OpenController } from './open.controller'
-import { OpenEntity } from './open.entity'
 import { OpenService } from './open.service'
 
 @Module({
   imports: [TypeOrmModule.forFeature([OpenEntity])],
-  providers: [OpenService],
-  controllers: [OpenController]
+  controllers: [OpenController],
+  providers: [OpenService]
 })
 export class OpenModule {}

@@ -2,11 +2,11 @@
 import { ApiProperty } from '@nestjs/swagger'
 import { IsNotEmpty } from 'class-validator'
 
-export class AddRecommendDto {
-  @ApiProperty()
-  @IsNotEmpty({ message: 'id不为空' })
+export class CreateRecommendDto {
   readonly id: string
-  readonly periods: number
+  @ApiProperty()
+  @IsNotEmpty({ message: '开奖期数不为空' })
+  readonly periods!: number
   readonly nums1?: string
   readonly nums2?: string
   readonly nums3?: string

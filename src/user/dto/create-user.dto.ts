@@ -1,9 +1,10 @@
+// 用户校验器
 import { ApiProperty } from '@nestjs/swagger'
-// 校验器
 import { IsNotEmpty } from 'class-validator'
 
-export class AddAnimalDto {
-  // ToDo: Remove this user interface
+export class CreateUserDto {
+  readonly id: number
+
   @ApiProperty()
   @IsNotEmpty({ message: '用户名不为空' })
   readonly name: string

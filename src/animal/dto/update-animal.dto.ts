@@ -1,22 +1,21 @@
 import { ApiProperty } from '@nestjs/swagger'
-// 校验器
 import { IsNotEmpty } from 'class-validator'
-
-export class AddOpenDto {
+// update 继承 create 属性
+export class UpdateAnimalDto {
   @ApiProperty()
-  @IsNotEmpty({ message: '用户名不为空' })
+  @IsNotEmpty({ message: 'id不为空' })
+  readonly id: string
+
+  @ApiProperty()
   readonly name: string
 
   @ApiProperty()
-  @IsNotEmpty({ message: '昵称不为空' })
   readonly nickname: string
 
   @ApiProperty()
-  @IsNotEmpty({ message: '密码不为空' })
   readonly password: string
 
   @ApiProperty()
-  @IsNotEmpty({ message: '手机号不为空' })
   readonly mobile: string
 
   @ApiProperty()
