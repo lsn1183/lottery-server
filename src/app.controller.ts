@@ -1,6 +1,6 @@
 // 程序控制器
-import { Controller, Get } from '@nestjs/common';
-import { AppService } from './app.service';
+import { Controller, Get } from '@nestjs/common'
+import { AppService } from './app.service'
 /**
  * 应用程序控制器，@Controller() 可以指定参数，用于定义类的父路由，如 @Controller("cat")，此时这个类的所有父路由就会成为 /cat
  *
@@ -22,6 +22,6 @@ export class AppController {
    */
   @Get()
   getHello(): any {
-    return this.appService.getHello();
+    return this.appService.getHello()
   }
 }

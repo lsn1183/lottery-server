@@ -1,4 +1,3 @@
-
 import { BaseEntity, Column, Entity, Generated, PrimaryColumn } from 'typeorm'
 //  @ManyToOne(() => User, user => user.photos) 多对一关系
 // @OneToMany(() => Photo, photo => photo.user) 一对多关系
