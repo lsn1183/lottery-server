@@ -23,9 +23,9 @@ export class CreateOpenDto {
   ordinary1_color: string
 
   @ApiProperty()
-  ordinary2_property: string
-  @ApiProperty()
   ordinary2: string
+  @ApiProperty()
+  ordinary2_property: string
   @ApiProperty() // 颜色
   ordinary2_color: string
 

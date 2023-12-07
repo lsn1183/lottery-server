@@ -7,7 +7,6 @@ import { UpdateColourDto } from './dto/update-colour.dto'
 @Controller('colour')
 export class ColourController {
   constructor(private readonly colourService: ColourService) {}
-
   // 分页查询
   @Get('page')
   page(@Query() params: QueryGlobalDto) {
@@ -23,9 +22,8 @@ export class ColourController {
   findOne(@Param('id') id: string) {
     return this.colourService.findOne(id)
   }
-
   // 增加
-  @Post('/add')
+  @Post('create')
   create(@Body() createColourDto: CreateColourDto) {
     return this.colourService.create(createColourDto)
   }

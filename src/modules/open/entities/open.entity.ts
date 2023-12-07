@@ -23,10 +23,10 @@ export class OpenEntity extends BaseEntity {
   @Column({ type: 'varchar', name: 'ordinary1_color' }) // 颜色
   ordinary1_color: string
 
-  @Column({ type: 'varchar', name: 'ordinary2_property' })
-  ordinary2_property: string
   @Column({ type: 'varchar', name: 'ordinary2' })
   ordinary2: string
+  @Column({ type: 'varchar', name: 'ordinary2_property' })
+  ordinary2_property: string
   @Column({ type: 'varchar', name: 'ordinary2_color' }) // 颜色
   ordinary2_color: string
 

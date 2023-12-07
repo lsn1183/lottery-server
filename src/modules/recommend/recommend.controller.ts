@@ -6,7 +6,7 @@ import { RecommendService } from './recommend.service'
 
 @Controller('recommend')
 export class RecommendController {
-  constructor(private readonly recommendService: RecommendService) { }
+  constructor(private readonly recommendService: RecommendService) {}
 
   // 分页查询
   @Get('page')
@@ -25,7 +25,7 @@ export class RecommendController {
   }
 
   // 增加
-  @Post('/add')
+  @Post('create')
   create(@Body() createRecommendDto: CreateRecommendDto) {
     return this.recommendService.create(createRecommendDto)
   }

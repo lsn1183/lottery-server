@@ -14,8 +14,7 @@ export class HttpExceptionFilter<T> implements ExceptionFilter {
     const ctx = host.switchToHttp()
     const response = ctx.getResponse()
     const request = ctx.getRequest()
-    Logger.log('错误提示-exception', JSON.stringify(exception))
-    const message = exception.message?.trimEnd
+    const message = exception.message?.trimEnd()
     Logger.log('错误提示', message)
     const errorResponse = {
       data: {

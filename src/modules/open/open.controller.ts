@@ -24,7 +24,7 @@ export class OpenController {
     return this.openService.findOne(id)
   }
 
-  @Post()
+  @Post('create')
   create(@Body() createOpenDto: CreateOpenDto) {
     return this.openService.create(createOpenDto)
   }

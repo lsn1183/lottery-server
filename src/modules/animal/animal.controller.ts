@@ -17,7 +17,7 @@ export class AnimalController {
     return this.animalService.findOne(id)
   }
 
-  @Post()
+  @Post('create')
   create(@Body() createAnimalDto: CreateAnimalDto) {
     return this.animalService.create(createAnimalDto)
   }

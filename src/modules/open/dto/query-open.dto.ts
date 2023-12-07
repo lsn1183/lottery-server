@@ -3,7 +3,7 @@ import { IsInt, IsNotEmpty, Min } from 'class-validator'
 
 export class QueryOpenDto {
   @ApiProperty()
-  readonly periods: string // 期数
+  readonly periods: number // 期数
 
   @ApiProperty()
   @Min(1, { message: '分页不能小于1' })

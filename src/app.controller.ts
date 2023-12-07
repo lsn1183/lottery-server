@@ -16,12 +16,12 @@ export class AppController {
    * Tips: 这里我使用 @Inject(AppService) 是为了规范代码风格
    */
   constructor(private readonly appService: AppService) {}
-
   /**
    * @Get() 可以指定参数，用于定义方法路由，如 @Get(":id")，此时这个方法路由就会成为 /cat/:id，即查询指定ID的 Cat
    */
   @Get()
   getHello(): any {
-    return this.appService.getHello()
+    return 'Welcome! fancy!'
+    // return this.appService.getHello()
   }
 }
