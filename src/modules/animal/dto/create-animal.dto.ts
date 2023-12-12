@@ -34,4 +34,8 @@ export class CreateAnimalDto {
 
   @ApiProperty()
   readonly city: string
+
+  @ApiProperty()
+  readonly type: string
+
 }

@@ -11,6 +11,8 @@ import { OpenModule } from './modules/open/open.module'
 import { RecommendModule } from './modules/recommend/recommend.module'
 import { UserModule } from './modules/user/user.module'
 import { ZodiacModule } from './modules/zodiac/zodiac.module'
+import { FourZodiacModule } from './modules/four-zodiac/four-zodiac.module';
+import { FauvistModule } from './modules/fauvist/fauvist.module';
 
 // console.log('env', env)
 
@@ -27,7 +29,9 @@ import { ZodiacModule } from './modules/zodiac/zodiac.module'
     OpenModule,
     RecommendModule,
     ZodiacModule,
-    ColourModule
+    ColourModule,
+    FourZodiacModule,
+    FauvistModule
   ], // 导入其他模块的集合
   controllers: [AppController], // 声明该模块的控制器
   providers: [AppService], // 声明该模块的提供者（通常是服务）

@@ -47,7 +47,7 @@ Nest is an MIT-licensed open source project. It can grow thanks to the sponsors 
 ## 数据库
 # 新建 user 模块，我们都放在 logical 下
 nest g mo colour && nest g s colour --no-spec && nest g co colour --no-spec
-# nest g resource colour modules --no-spec
+# nest g resource fourZodiac modules --no-spec
 
 
 ## License

@@ -26,8 +26,8 @@ export class ZodiacController {
 
   // 增加
   @Post('/create')
-  create(@Body() createRecommendDto: CreateZodiacDto) {
-    return this.zodiacService.create(createRecommendDto)
+  create(@Body() createZodiacDto: CreateZodiacDto) {
+    return this.zodiacService.create(createZodiacDto)
   }
   // 更新
   @Patch(':id')

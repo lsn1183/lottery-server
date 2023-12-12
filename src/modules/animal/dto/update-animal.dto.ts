@@ -7,29 +7,23 @@ export class UpdateAnimalDto {
   readonly id: string
 
   @ApiProperty()
+  readonly nums: string
+
+  @ApiProperty()
+  readonly color: string
+
+  @ApiProperty()
   readonly name: string
 
   @ApiProperty()
-  readonly nickname: string
+  readonly property: string
 
   @ApiProperty()
-  readonly password: string
+  readonly general: string
 
   @ApiProperty()
-  readonly mobile: string
+  readonly profession: string
 
   @ApiProperty()
-  readonly avatar: string
-
-  @ApiProperty()
-  readonly gender: string
-
-  @ApiProperty()
-  readonly userLevel: string
-
-  @ApiProperty()
-  readonly province: string
-
-  @ApiProperty()
-  readonly city: string
+  readonly type: string
 }
