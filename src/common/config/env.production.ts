@@ -11,7 +11,7 @@ export default {
     host: 'localhost',
     port: 3306,
     username: 'root',
-    password: '12345678',
+    password: 'az12345678',
     database: 'database',
     entities: ['dist/**/*.entity{.ts,.js}'],
     autoLoadEntities: true,
