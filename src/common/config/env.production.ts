@@ -12,7 +12,7 @@ export default {
     port: 3306,
     username: 'root',
     password: 'az12345678',
-    database: 'database',
+    database: 'Database',
     entities: ['dist/**/*.entity{.ts,.js}'],
     autoLoadEntities: true,
     synchronize: true
