@@ -3,6 +3,9 @@ import { ApiProperty } from '@nestjs/swagger'
 
 export class CreateAnimalDto {
   @ApiProperty()
+  readonly id: string
+
+  @ApiProperty()
   readonly nums: string
 
   @ApiProperty()
