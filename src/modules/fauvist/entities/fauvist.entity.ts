@@ -10,10 +10,20 @@ export class FauvistEntity extends BaseEntity {
 
   @Column({ type: 'int', name: 'periods' })
   periods!: number
-  // 单数肖
-  @Column({ type: 'varchar', name: 'type' })
-  type: string
-  // 双数肖
-  @Column({ type: 'varchar', name: 'names' })
-  names: string
+
+  // 野肖
+  @Column({ type: 'varchar', name: 'beast' })
+  beast: string
+
+  // 家禽肖
+  @Column({ type: 'varchar', name: 'birds' })
+  birds: string
+
+  // 吉肖
+  @Column({ type: 'varchar', name: 'propitious' })
+  propitious: string
+
+  // 凶肖
+  @Column({ type: 'varchar', name: 'fierce' })
+  fierce: string
 }

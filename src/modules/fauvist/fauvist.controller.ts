@@ -3,7 +3,7 @@ import { QueryGlobalDto } from 'src/global/query-global.dto'
 import { CreateFauvistDto } from './dto/create-fauvist.dto'
 import { UpdateFauvistDto } from './dto/update-fauvist.dto'
 import { FauvistService } from './fauvist.service'
-
+// 家禽野兽篇吉凶
 @Controller('fauvist')
 export class FauvistController {
   constructor(private readonly fauvistService: FauvistService) { }

@@ -9,6 +9,8 @@ export class CreateFauvistDto {
   @IsNotEmpty({ message: '开奖期数不为空' })
   readonly periods!: number
 
-  readonly type?: string
-  readonly names?: string
+  readonly beast?: string
+  readonly birds?: string
+  readonly propitious?: string
+  readonly fierce?: string
 }
