@@ -56,4 +56,6 @@ export class CreateOpenDto {
   ordinary6_property: string
   @ApiProperty()
   ordinary6_color: string
+
+  readonly years?: string
 }

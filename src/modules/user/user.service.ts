@@ -19,11 +19,21 @@ export class UserService {
     return await this.userRepository.query('select * from user')
   }
 
-  async findOne(id: number): Promise<UserEntity | undefined> {
-    return await this.userRepository.findOne({
-      where: { id },
-      relations: ['products.product']
-    })
+  async findOne(name: string): Promise<any | undefined> {
+    if (!name) {
+      return {
+        code: 400,
+        msg: '请输入用户名'
+      }
+    }
+    try {
+      return await this.userRepository.findOne({
+        where: { name }
+      })
+    } catch (error) {
+      Logger.log(`错误参数：${JSON.stringify(error)}`)
+      return void 0
+    }
   }
 
   // 增加
@@ -101,5 +111,17 @@ export class UserService {
     result.totalPage = Math.ceil((await this.userRepository.count()) / parameter.pageSize)
 
     return result
+  }
+
+  // 登录
+  async login(createUserDto: CreateUserDto): Promise<boolean> {
+    Logger.log(`请求参数：${JSON.stringify(createUserDto)}`)
+    try {
+      // await this.userRepository.save(createUserDto)
+      return true
+    } catch (error) {
+      Logger.log(`请求失败：${JSON.stringify(error)}`)
+      return false
+    }
   }
 }

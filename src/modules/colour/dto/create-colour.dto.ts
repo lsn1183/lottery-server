@@ -12,4 +12,5 @@ export class CreateColourDto {
   readonly color1: string
   readonly color2: string
   readonly main: string | number
+  readonly year: string
 }

@@ -1,4 +1,5 @@
 import { Body, Controller, Delete, Get, Param, Patch, Post, Query } from '@nestjs/common'
+import { Public } from 'src/common/decorator/public.decorator'
 import { CreateRecommendDto } from './dto/create-recommend.dto'
 import { QueryRecommendDto } from './dto/query-recommend.dto'
 import { UpdateRecommendDto } from './dto/update-recommend.dto'
@@ -9,16 +10,19 @@ export class RecommendController {
   constructor(private readonly recommendService: RecommendService) {}
 
   // 分页查询
+  @Public()
   @Get('page')
   page(@Query() params: QueryRecommendDto) {
     return this.recommendService.pageQuery(params)
   }
   // 查询全部
+  @Public() // token校验白名单
   @Get()
   findAll() {
     return this.recommendService.findAll()
   }
   // ID 查询单个
+  @Public()
   @Get(':id')
   findOne(@Param('id') id: string) {
     return this.recommendService.findOne(id)

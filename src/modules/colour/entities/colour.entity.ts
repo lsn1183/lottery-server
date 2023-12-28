@@ -22,4 +22,7 @@ export class ColourEntity extends BaseEntity {
 
   @Column({ type: 'varchar', name: 'color2' })
   color2: string
+
+  @Column({ type: 'varchar', name: 'year' })
+  year: string
 }

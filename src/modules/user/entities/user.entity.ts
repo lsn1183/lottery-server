@@ -4,14 +4,11 @@ import { BaseEntity, Column, Entity, Generated, PrimaryColumn } from 'typeorm'
 export class UserEntity extends BaseEntity {
   @PrimaryColumn({ type: 'varchar', length: 36 })
   @Generated('uuid')
-  public readonly id!: number
+  public readonly id!: string
 
   @Column({ type: 'varchar', name: 'name', comment: '用户名' })
   name: string
 
-  @Column({ type: 'varchar', name: 'password', comment: '密码' })
+  @Column({ type: 'varchar', name: 'password', comment: '密码', select: false })
   password: string
-
-  @Column({ type: 'varchar', name: 'roles' })
-  roles: string
 }

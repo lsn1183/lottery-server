@@ -5,17 +5,19 @@ import { AppController } from './app.controller'
 import { AppService } from './app.service'
 import { env } from './common/config'
 // 子模块加载
+import { APP_GUARD } from '@nestjs/core'
+import { JwtAuthGuard } from './common/guards/auth.guard'
 import { AnimalModule } from './modules/animal/animal.module'
+import { AuthModule } from './modules/auth/auth.module'
 import { ColourModule } from './modules/colour/colour.module'
+import { FauvistModule } from './modules/fauvist/fauvist.module'
+import { FourZodiacModule } from './modules/four-zodiac/four-zodiac.module'
 import { OpenModule } from './modules/open/open.module'
 import { RecommendModule } from './modules/recommend/recommend.module'
 import { UserModule } from './modules/user/user.module'
 import { ZodiacModule } from './modules/zodiac/zodiac.module'
-import { FourZodiacModule } from './modules/four-zodiac/four-zodiac.module';
-import { FauvistModule } from './modules/fauvist/fauvist.module';
 
 // console.log('env', env)
-
 /**
  * @Module() 定义一个模块，并管理这个模块的导入集合、控制器集合、提供者集合、导出集合
  */
@@ -31,10 +33,11 @@ import { FauvistModule } from './modules/fauvist/fauvist.module';
     ZodiacModule,
     ColourModule,
     FourZodiacModule,
-    FauvistModule
+    FauvistModule,
+    AuthModule
   ], // 导入其他模块的集合
   controllers: [AppController], // 声明该模块的控制器
-  providers: [AppService], // 声明该模块的提供者（通常是服务）
+  providers: [AppService, { provide: APP_GUARD, useClass: JwtAuthGuard }], // 声明该模块的提供者（通常是服务）
   exports: [] // 导出当前模块的提供者，用于被其他模块调用
 })
 export class AppModule {}

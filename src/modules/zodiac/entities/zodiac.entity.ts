@@ -13,4 +13,7 @@ export class ZodiacEntity extends BaseEntity {
 
   @Column({ type: 'varchar', name: 'names' })
   names: string
+
+  @Column({ type: 'varchar', name: 'year' })
+  year: string
 }

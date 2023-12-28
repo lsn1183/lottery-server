@@ -11,6 +11,9 @@ export class FauvistEntity extends BaseEntity {
   @Column({ type: 'int', name: 'periods' })
   periods!: number
 
+  @Column({ type: 'varchar', name: 'year' })
+  year: string
+
   // 野肖
   @Column({ type: 'varchar', name: 'beast' })
   beast: string
@@ -26,4 +29,20 @@ export class FauvistEntity extends BaseEntity {
   // 凶肖
   @Column({ type: 'varchar', name: 'fierce' })
   fierce: string
+
+  // 天肖
+  @Column({ type: 'varchar', name: 'sky' })
+  sky: string
+
+  // 地肖
+  @Column({ type: 'varchar', name: 'land' })
+  land: string
+
+  // 阴肖
+  @Column({ type: 'varchar', name: 'cloudy' })
+  cloudy: string
+
+  // 阳肖
+  @Column({ type: 'varchar', name: 'male' })
+  male: string
 }

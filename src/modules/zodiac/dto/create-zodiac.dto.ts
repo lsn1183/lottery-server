@@ -9,4 +9,5 @@ export class CreateZodiacDto {
   @IsNotEmpty({ message: '开奖期数不为空' })
   readonly periods!: number
   readonly names?: string
+  readonly years?: string
 }

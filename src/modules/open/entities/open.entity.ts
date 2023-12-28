@@ -57,4 +57,7 @@ export class OpenEntity extends BaseEntity {
   ordinary6_property: string
   @Column({ type: 'varchar', name: 'ordinary6_color' })
   ordinary6_color: string
+
+  @Column({ type: 'varchar', name: 'year' })
+  year: string
 }

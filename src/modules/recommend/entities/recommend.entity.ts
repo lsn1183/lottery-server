@@ -19,4 +19,7 @@ export class RecommendEntity extends BaseEntity {
 
   @Column({ type: 'varchar', name: 'nums3' })
   nums3: string
+
+  @Column({ type: 'varchar', name: 'year' })
+  year: string
 }

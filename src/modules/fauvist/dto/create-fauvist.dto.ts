@@ -8,9 +8,13 @@ export class CreateFauvistDto {
   @ApiProperty()
   @IsNotEmpty({ message: '开奖期数不为空' })
   readonly periods!: number
-
+  readonly years?: string
   readonly beast?: string
   readonly birds?: string
   readonly propitious?: string
   readonly fierce?: string
+  readonly sky?: string
+  readonly land?: string
+  readonly cloudy?: string
+  readonly male?: string
 }

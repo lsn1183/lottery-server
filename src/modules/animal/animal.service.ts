@@ -17,8 +17,9 @@ export class AnimalService {
     return await this.animalRepository.query('select * from animal ORDER BY id desc')
   }
 
-  async findOne(nums: string) {
-    return await this.animalRepository.find({ where: { nums: nums } })
+  async findOne(year: string) {
+    Logger.log(`请求参数：${JSON.stringify(year)}`)
+    return await this.animalRepository.find({ where: { year } })
   }
 
   async create(createAnimalDto: CreateAnimalDto): Promise<boolean> {

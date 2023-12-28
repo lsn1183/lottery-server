@@ -1,4 +1,5 @@
 import { Body, Controller, Delete, Get, Param, Patch, Post, Query } from '@nestjs/common'
+import { Public } from 'src/common/decorator/public.decorator'
 import { QueryGlobalDto } from 'src/global/query-global.dto'
 import { ColourService } from './colour.service'
 import { CreateColourDto } from './dto/create-colour.dto'
@@ -8,16 +9,19 @@ import { UpdateColourDto } from './dto/update-colour.dto'
 export class ColourController {
   constructor(private readonly colourService: ColourService) {}
   // 分页查询
+  @Public()
   @Get('page')
   page(@Query() params: QueryGlobalDto) {
     return this.colourService.pageQuery(params)
   }
   // 查询全部
+  @Public()
   @Get()
   findAll() {
     return this.colourService.findAll()
   }
   // ID 查询单个
+  @Public()
   @Get(':id')
   findOne(@Param('id') id: string) {
     return this.colourService.findOne(id)

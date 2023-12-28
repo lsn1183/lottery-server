@@ -11,5 +11,5 @@ export class CreateFourZodiacDto {
 
   readonly single?: string
   readonly double?: string
-
+  readonly years?: string
 }

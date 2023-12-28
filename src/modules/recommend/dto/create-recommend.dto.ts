@@ -10,4 +10,5 @@ export class CreateRecommendDto {
   readonly nums1?: string
   readonly nums2?: string
   readonly nums3?: string
+  readonly years?: string
 }

@@ -18,12 +18,13 @@ export class UpdateAnimalDto {
   @ApiProperty()
   readonly property: string
 
-  @ApiProperty()
-  readonly general: string
 
   @ApiProperty()
   readonly profession: string
 
   @ApiProperty()
   readonly type: string
+
+  @ApiProperty()
+  readonly year: string
 }

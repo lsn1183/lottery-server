@@ -16,4 +16,6 @@ export class FourZodiacEntity extends BaseEntity {
   // 双数肖
   @Column({ type: 'varchar', name: 'double' })
   double: string
+  @Column({ type: 'varchar', name: 'year' })
+  year: string
 }
