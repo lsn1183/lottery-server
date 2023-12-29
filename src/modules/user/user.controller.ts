@@ -1,6 +1,7 @@
-import { Body, Controller, Delete, Get, Param, Patch, Post } from '@nestjs/common'
+import { Body, Controller, Delete, Get, Param, Patch, Post, UseGuards } from '@nestjs/common'
 import * as bcrypt from 'bcrypt'
 import { Public } from 'src/common/decorator/public.decorator'
+import { JwtAuthGuard } from 'src/common/guards/auth.guard'
 import { CreateUserDto } from './dto/create-user.dto'
 import { UpdateUserDto } from './dto/update-user.dto'
 import { UserEntity } from './entities/user.entity'
@@ -9,7 +10,8 @@ import { UserService } from './user.service'
 @Controller('user')
 export class UserController {
   constructor(private readonly userService: UserService) {}
-  @Public()
+  // @Public()
+  @UseGuards(JwtAuthGuard)
   @Get('list')
   findAll(): Promise<UserEntity[]> {
     return this.userService.findAll()
@@ -24,6 +26,7 @@ export class UserController {
   /**
    * 用户管理-增加用户
    */
+  @UseGuards(JwtAuthGuard)
   @Post('create')
   create(@Body() createUserDto: UserEntity) {
     const password = bcrypt.hashSync(createUserDto.password, 10) // 散列加密，创建用户对密码进行加密再存储

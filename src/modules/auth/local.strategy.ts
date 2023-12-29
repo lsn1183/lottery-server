@@ -1,5 +1,5 @@
 // 验证信息策略文件
-import { BadRequestException, Logger } from '@nestjs/common'
+import { BadRequestException } from '@nestjs/common'
 import { PassportStrategy } from '@nestjs/passport'
 import { InjectRepository } from '@nestjs/typeorm'
 import { compareSync } from 'bcrypt'
@@ -8,7 +8,7 @@ import { Strategy } from 'passport-local'
 import { UserEntity } from 'src/modules/user/entities/user.entity'
 import { Repository } from 'typeorm'
 
-export class LocalStrategy extends PassportStrategy(Strategy) { // 这里的 Strategy 必须是 passport-jwt 包中的
+export class LocalStrategy extends PassportStrategy(Strategy) {
   // 此处的 Strategy 要引入 passport-local 中的
   constructor(
     @InjectRepository(UserEntity) private readonly userRepository: Repository<UserEntity> // 将 UserEntity 实体注入进来
@@ -28,7 +28,6 @@ export class LocalStrategy extends PassportStrategy(Strategy) { // 这里的 Str
       .getOne()
 
     if (!user) throw new BadRequestException('用户不存在')
-    Logger.log('参数', password, user.password, compareSync(password, user.password))
     if (!compareSync(password, user.password)) throw new BadRequestException('密码错误')
     return user
   }

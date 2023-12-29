@@ -1,12 +1,12 @@
 // 程序根模块
 import { Module } from '@nestjs/common'
+// import { APP_GUARD } from '@nestjs/core'
 import { TypeOrmModule } from '@nestjs/typeorm'
 import { AppController } from './app.controller'
 import { AppService } from './app.service'
 import { env } from './common/config'
 // 子模块加载
-import { APP_GUARD } from '@nestjs/core'
-import { JwtAuthGuard } from './common/guards/auth.guard'
+// import { JwtAuthGuard } from 'src/common/guards/auth.guard'
 import { AnimalModule } from './modules/animal/animal.module'
 import { AuthModule } from './modules/auth/auth.module'
 import { ColourModule } from './modules/colour/colour.module'
@@ -37,7 +37,8 @@ import { ZodiacModule } from './modules/zodiac/zodiac.module'
     AuthModule
   ], // 导入其他模块的集合
   controllers: [AppController], // 声明该模块的控制器
-  providers: [AppService, { provide: APP_GUARD, useClass: JwtAuthGuard }], // 声明该模块的提供者（通常是服务）
+  // providers: [AppService, { provide: APP_GUARD, useClass: JwtAuthGuard }], // 声明该模块的提供者（通常是服务）
+  providers: [AppService], // 声明该模块的提供者（通常是服务）
   exports: [] // 导出当前模块的提供者，用于被其他模块调用
 })
 export class AppModule {}

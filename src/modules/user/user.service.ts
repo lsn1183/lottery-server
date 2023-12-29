@@ -12,7 +12,6 @@ export class UserService {
     @InjectRepository(UserEntity)
     private readonly userRepository: Repository<UserEntity>
   ) {}
-  private readonly User: UserEntity[] = []
 
   // 获取所有用户数据列表(userRepository.query()方法属于typeoram)
   async findAll(): Promise<UserEntity[]> {

@@ -8,11 +8,11 @@ export class AuthService {
 
   async login(user: Partial<UserEntity>) {
     const payload = { name: user.name, id: user.id }
-    // Logger.log('参数:', payload, user)
     const access_token = this.jwtService.sign(payload) // 签发 JWT token
     return {
       access_token,
-      type: 'Bearer'
+      type: 'Bearer',
+      ...payload
     }
   }
 }
