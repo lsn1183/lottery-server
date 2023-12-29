@@ -8,7 +8,6 @@ import { env } from './common/config'
 // 子模块加载
 // import { JwtAuthGuard } from 'src/common/guards/auth.guard'
 import { AnimalModule } from './modules/animal/animal.module'
-import { AuthModule } from './modules/auth/auth.module'
 import { ColourModule } from './modules/colour/colour.module'
 import { FauvistModule } from './modules/fauvist/fauvist.module'
 import { FourZodiacModule } from './modules/four-zodiac/four-zodiac.module'
@@ -33,8 +32,8 @@ import { ZodiacModule } from './modules/zodiac/zodiac.module'
     ZodiacModule,
     ColourModule,
     FourZodiacModule,
-    FauvistModule,
-    AuthModule
+    FauvistModule
+    // AuthModule
   ], // 导入其他模块的集合
   controllers: [AppController], // 声明该模块的控制器
   // providers: [AppService, { provide: APP_GUARD, useClass: JwtAuthGuard }], // 声明该模块的提供者（通常是服务）

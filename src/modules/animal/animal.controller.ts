@@ -1,5 +1,4 @@
 import { Body, Controller, Delete, Get, Param, Patch, Post, Query } from '@nestjs/common'
-import { Public } from 'src/common/decorator/public.decorator'
 import { AnimalService } from './animal.service'
 import { CreateAnimalDto } from './dto/create-animal.dto'
 import { AnimalEntity } from './entities/animal.entity'
@@ -7,12 +6,10 @@ import { AnimalEntity } from './entities/animal.entity'
 @Controller('animal')
 export class AnimalController {
   constructor(private readonly animalService: AnimalService) {}
-  @Public()
   @Get()
   findAll(): Promise<AnimalEntity[]> {
     return this.animalService.findAll()
   }
-  @Public()
   @Get('/list')
   findOne(@Query('year') year?: string) {
     return this.animalService.findOne(year)
