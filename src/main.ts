@@ -8,7 +8,7 @@ import { HttpExceptionFilter } from './filters/http-exception/http-exception.fil
 import { TransformInterceptor } from './filters/transform.interceptor'
 
 async function bootstrap() {
-  const app = await NestFactory.create(AppModule)
+  const app = await NestFactory.create(AppModule, { cors: true })
   app.useGlobalFilters(new HttpExceptionFilter()) // TODO: 过滤器
   app.useGlobalInterceptors(new TransformInterceptor()) // TODO: 统一请求成功的返回数据
   app.use(json({ limit: '1mb' }))

@@ -1,27 +1,27 @@
-import { Body, Controller, Delete, Get, Param, Patch, Post, Query } from '@nestjs/common'
+import { Body, Controller, Delete, Get, Param, Patch, Post } from '@nestjs/common'
 import { CreateOpenDto } from './dto/create-open.dto'
-import { QueryOpenDto } from './dto/query-open.dto'
+// import { QueryOpenDto } from './dto/query-open.dto'
 import { UpdateOpenDto } from './dto/update-open.dto'
-import { OpenEntity } from './entities/open.entity'
+// import { OpenEntity } from './entities/open.entity'
 import { OpenService } from './open.service'
 
 @Controller('open')
 export class OpenController {
   constructor(private readonly openService: OpenService) {}
   // @Public()
-  @Get()
-  findAll(): Promise<OpenEntity[]> {
-    return this.openService.findAll()
-  }
+  // @Get()
+  // findAll(): Promise<OpenEntity[]> {
+  //   return this.openService.findAll()
+  // }
+  // // @Public()
+  // @Get('page')
+  // pageQuery(@Query() query: QueryOpenDto): Promise<OpenEntity[]> {
+  //   return this.openService.pageQuery(query)
+  // }
   // @Public()
-  @Get('page')
-  pageQuery(@Query() query: QueryOpenDto): Promise<OpenEntity[]> {
-    return this.openService.pageQuery(query)
-  }
-  // @Public()
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.openService.findOne(id)
+  @Get(':periods')
+  findOne(@Param('periods') periods: number) {
+    return this.openService.findOne(periods)
   }
 
   @Post('create')

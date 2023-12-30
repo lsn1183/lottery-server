@@ -1,23 +1,24 @@
 import { Injectable, Logger } from '@nestjs/common'
 import { InjectRepository } from '@nestjs/typeorm'
 import { Repository } from 'typeorm'
-import { CreateOpenDto } from './dto/create-open.dto'
-import { UpdateOpenDto } from './dto/update-open.dto'
-import { OpenEntity } from './entities/open.entity'
+import { CreateHistoryDto } from './dto/create-history.dto'
+import { UpdateHistoryDto } from './dto/update-history.dto'
+import { HistoryEntity } from './entities/history.entity'
 
 @Injectable()
-export class OpenService {
+export class HistoryService {
   constructor(
-    @InjectRepository(OpenEntity) // 注入实体
-    private readonly openRepository: Repository<OpenEntity> // TODO: Repository方法操作数据
+    @InjectRepository(HistoryEntity) // 注入实体
+    private readonly historyRepository: Repository<HistoryEntity> // TODO: Repository方法操作数据
   ) {}
 
-  async findAll(): Promise<OpenEntity[]> {
-    return await this.openRepository.query('select * from open ORDER BY periods desc') // TODO: 原生查询语句
+  async findAll(): Promise<HistoryEntity[]> {
+    const data = await this.historyRepository.query('select * from history ORDER BY periods desc')
+    return data // TODO: 原生查询语句
   }
-  async findOne(periods: number) {
+  async findOne(id: string) {
     // 使用封装好方法：
-    return await this.openRepository.find({ where: { periods } })
+    return await this.historyRepository.find({ where: { id } })
   }
 
   // 分页查询
@@ -38,7 +39,7 @@ export class OpenService {
     if (parameter.periods != undefined) {
       SQLwhere.periods = parameter.periods
     }
-    result.list = await this.openRepository.find({
+    result.list = await this.historyRepository.find({
       where: SQLwhere,
       order: {
         // id: 'ASC', // ASC 顺序，DESC 倒序
@@ -48,31 +49,28 @@ export class OpenService {
       take: parameter.pageSize, // 分页，取几项
       cache: true
     })
-
     // 总条数
-    result.totalRows = await this.openRepository.count()
-
+    result.totalRows = await this.historyRepository.count()
     // 总页数
-    result.totalPage = Math.ceil((await this.openRepository.count()) / parameter.pageSize)
-
+    result.totalPage = Math.ceil((await this.historyRepository.count()) / parameter.pageSize)
     return result
   }
 
-  async create(createOpenDto: CreateOpenDto): Promise<boolean> {
+  async create(CreateHistoryDto: CreateHistoryDto): Promise<boolean> {
     try {
-      await this.openRepository.save(createOpenDto)
+      await this.historyRepository.save(CreateHistoryDto)
       return true
     } catch (error) {
       return false
     }
   }
 
-  async update(id: string, updateOpenDto: UpdateOpenDto): Promise<boolean> {
+  async update(id: string, UpdateHistoryDto: UpdateHistoryDto): Promise<boolean> {
     try {
-      const openToUpdate = await this.openRepository.findOne({
+      const openToUpdate = await this.historyRepository.findOne({
         where: { id }
       })
-      await this.openRepository.save({ ...openToUpdate, ...updateOpenDto })
+      await this.historyRepository.save({ ...openToUpdate, ...UpdateHistoryDto })
       return true
     } catch (error) {
       return false
@@ -81,7 +79,7 @@ export class OpenService {
 
   async remove(id: number): Promise<boolean> {
     try {
-      await this.openRepository.delete(id)
+      await this.historyRepository.delete(id)
       return true
     } catch (error) {
       return false
