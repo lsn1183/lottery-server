@@ -17,4 +17,7 @@ export class CreateFauvistDto {
   readonly land?: string
   readonly cloudy?: string
   readonly male?: string
+  readonly man?: string
+  readonly woman?: string
+
 }

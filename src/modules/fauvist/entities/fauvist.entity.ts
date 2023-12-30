@@ -45,4 +45,12 @@ export class FauvistEntity extends BaseEntity {
   // 阳肖
   @Column({ type: 'varchar', name: 'male' })
   male: string
+
+  // 男肖
+  @Column({ type: 'varchar', name: 'man' })
+  man: string
+
+  // 男肖
+  @Column({ type: 'varchar', name: 'woman' })
+  woman: string
 }
