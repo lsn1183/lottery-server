@@ -19,5 +19,5 @@ export class CreateFauvistDto {
   readonly male?: string
   readonly man?: string
   readonly woman?: string
-
+  readonly main?: string
 }

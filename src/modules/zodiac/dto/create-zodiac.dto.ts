@@ -8,6 +8,7 @@ export class CreateZodiacDto {
   @ApiProperty()
   @IsNotEmpty({ message: '开奖期数不为空' })
   readonly periods!: number
-  readonly names?: string
   readonly years?: string
+  readonly single?: string
+  readonly mantissa?: string
 }

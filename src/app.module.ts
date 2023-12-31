@@ -10,8 +10,8 @@ import { env } from './common/config'
 import { AnimalModule } from './modules/animal/animal.module'
 import { ColourModule } from './modules/colour/colour.module'
 import { FauvistModule } from './modules/fauvist/fauvist.module'
-import { FourZodiacModule } from './modules/four-zodiac/four-zodiac.module'
 import { HistoryModule } from './modules/history/history.module'
+import { MultiZodiacModule } from './modules/multi-zodiac/multi-zodiac.module'
 import { OpenModule } from './modules/open/open.module'
 import { RecommendModule } from './modules/recommend/recommend.module'
 import { UserModule } from './modules/user/user.module'
@@ -32,7 +32,7 @@ import { ZodiacModule } from './modules/zodiac/zodiac.module'
     RecommendModule,
     ZodiacModule,
     ColourModule,
-    FourZodiacModule,
+    MultiZodiacModule,
     FauvistModule,
     HistoryModule
     // AuthModule

@@ -4,7 +4,7 @@ import { Repository } from 'typeorm';
 import { CreateFauvistDto } from './dto/create-fauvist.dto';
 import { UpdateFauvistDto } from './dto/update-fauvist.dto';
 import { FauvistEntity } from './entities/fauvist.entity';
-
+// SELECT * FROM `database`.`recommend` ORDER BY `periods` DESC LIMIT 0,1000
 @Injectable()
 export class FauvistService {
   constructor(
