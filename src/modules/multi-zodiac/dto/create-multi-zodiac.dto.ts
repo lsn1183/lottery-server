@@ -12,6 +12,7 @@ export class CreateMultiZodiacDto {
   readonly years?: string
   readonly single?: string
   readonly double?: string
+  readonly three?: string
   readonly four?: string
   readonly five?: string
   readonly six?: string

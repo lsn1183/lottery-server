@@ -42,7 +42,7 @@ export class HistoryService {
     result.list = await this.historyRepository.find({
       where: SQLwhere,
       order: {
-        // id: 'ASC', // ASC 顺序，DESC 倒序
+        year: 'DESC', // ASC 顺序，DESC 倒序
         periods: 'DESC' // 从期数排序查
       },
       skip: (parameter.pageNum - 1) * Number(parameter.pageSize), // 分页，跳过几项

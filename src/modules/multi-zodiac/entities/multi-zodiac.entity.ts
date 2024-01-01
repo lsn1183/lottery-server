@@ -25,6 +25,10 @@ export class MultiZodiacEntity extends BaseEntity {
   @Column({ type: 'varchar', name: 'double' })
   double: string
 
+  // 3数肖
+  @Column({ type: 'varchar', name: 'three' })
+  three: string
+
   // 4数肖
   @Column({ type: 'varchar', name: 'four' })
   four: string

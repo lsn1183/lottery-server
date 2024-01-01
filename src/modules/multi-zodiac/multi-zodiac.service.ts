@@ -85,6 +85,7 @@ export class MultiZodiacService {
     result.list = await this.multiZodiacRepository.find({
       where: SQLwhere,
       order: {
+        year: 'DESC', // ASC 顺序，DESC 倒序
         periods: 'DESC'
       },
       skip: (Number(parameter.pageNum) - 1) * Number(parameter.pageSize), // 分页，跳过几项
