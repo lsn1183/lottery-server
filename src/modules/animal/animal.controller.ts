@@ -12,7 +12,7 @@ export class AnimalController {
   }
   @Get('/list')
   findOne(@Query('year') year?: string) {
-    return this.animalService.findOne(year)
+    return year ? this.animalService.findOne(year) : this.animalService.findAll()
   }
 
   @Post('create')
