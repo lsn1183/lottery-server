@@ -31,8 +31,10 @@ export class OpenController {
     return this.openService.create(createOpenDto)
   }
 
-  @Patch(':id')
-  update(@Param('id') id: string, @Body() updateOpenDto: UpdateOpenDto) {
+  @Patch('update')
+  update(@Body() updateOpenDto: UpdateOpenDto) {
+    // Logger.log(`请求参数：id, ${JSON.stringify(updateOpenDto)}`)
+    const id = updateOpenDto?.id
     return this.openService.update(id, updateOpenDto)
   }
 
