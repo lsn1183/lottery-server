@@ -1,6 +1,7 @@
-import { Body, Controller, Delete, Get, Param, Patch, Post } from '@nestjs/common'
+import { Body, Controller, Delete, Get, Logger, Param, Patch, Post } from '@nestjs/common'
 import * as bcrypt from 'bcrypt'
 // import { JwtAuthGuard } from 'src/common/guards/auth.guard'
+import { EventsGateway } from 'src/event/event.gateway'
 import { CreateUserDto } from './dto/create-user.dto'
 import { UpdateUserDto } from './dto/update-user.dto'
 import { UserEntity } from './entities/user.entity'
@@ -8,7 +9,10 @@ import { UserService } from './user.service'
 
 @Controller('user')
 export class UserController {
-  constructor(private readonly userService: UserService) {}
+  constructor(
+    private readonly userService: UserService,
+    private readonly eventsGatewayService: EventsGateway
+  ) {}
   // @Public()
   // @UseGuards(JwtAuthGuard)
   @Get('list')
@@ -19,9 +23,11 @@ export class UserController {
   // @Public()
   @Get(':id')
   findOne(@Param('id') id: string) {
+    Logger.log(`错误参数：${JSON.stringify(11111)}`)
+
+    this.eventsGatewayService.PublicMessage('Hello WebSocket!!')
     return this.userService.findOne(id)
   }
-
   /**
    * 用户管理-增加用户
    */
