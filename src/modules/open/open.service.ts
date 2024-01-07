@@ -78,7 +78,7 @@ export class OpenService {
     }
   }
 
-  async remove(id: number): Promise<boolean> {
+  async remove(id: string): Promise<boolean> {
     try {
       await this.openRepository.delete(id)
       return true

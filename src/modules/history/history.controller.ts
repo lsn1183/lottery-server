@@ -36,6 +36,6 @@ export class HistoryController {
 
   @Delete(':id')
   remove(@Param('id') id: string) {
-    return this.historyService.remove(+id)
+    return this.historyService.remove(id)
   }
 }

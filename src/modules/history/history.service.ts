@@ -77,7 +77,7 @@ export class HistoryService {
     }
   }
 
-  async remove(id: number): Promise<boolean> {
+  async remove(id: string): Promise<boolean> {
     try {
       await this.historyRepository.delete(id)
       return true

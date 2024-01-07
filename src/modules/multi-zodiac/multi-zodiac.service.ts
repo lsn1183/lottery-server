@@ -49,7 +49,7 @@ export class MultiZodiacService {
   }
 
   // 删除
-  async remove(id: number): Promise<boolean> {
+  async remove(id: string): Promise<boolean> {
     Logger.log(`请求参数：${JSON.stringify(id)}`)
     try {
       const result = await this.multiZodiacRepository.delete(id)

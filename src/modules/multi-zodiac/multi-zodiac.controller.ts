@@ -42,6 +42,6 @@ export class MultiZodiacController {
   // 删除
   @Delete(':id')
   remove(@Param('id') id: string) {
-    return this.multiZodiacService.remove(+id)
+    return this.multiZodiacService.remove(id)
   }
 }

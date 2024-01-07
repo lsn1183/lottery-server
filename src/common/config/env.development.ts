@@ -8,7 +8,7 @@ export default {
   // 数据库配置
   DATABASE_CONFIG: {
     type: 'mysql',
-    host: 'localhost', // 服务器主机名  本地不用改 或者 127.0.0.1
+    host: 'localhost', // 服务器主机名本地不用改或者127.0.0.1
     port: 3306, // 数据库端口  默认 3306
     username: 'root', // 数据库用户名
     password: '12345678', // 数据库密码

@@ -40,6 +40,6 @@ export class OpenController {
 
   @Delete(':id')
   remove(@Param('id') id: string) {
-    return this.openService.remove(+id)
+    return this.openService.remove(id)
   }
 }
